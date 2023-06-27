@@ -59,5 +59,29 @@ function createExplosion(e) {
 // Add an event listener for mousedown
 Matter.Events.on(mouseConstraint, 'mousedown', createExplosion);
 
+// FPS counter
+let lastCalledTime = Date.now();
+let fpsCounter = document.createElement('div');
+fpsCounter.style.position = 'fixed';
+fpsCounter.style.top = '10px';
+fpsCounter.style.left = '10px';
+document.body.appendChild(fpsCounter);
+
+function updateFPSCounter() {
+    let delta = (Date.now() - lastCalledTime)/1000;
+    lastCalledTime = Date.now();
+    let fps = 1/delta;
+    fpsCounter.innerHTML = `FPS: ${Math.round(fps)}`;
+}
+
+// Start the rendering loop
+(function animate() {
+    Engine.update(engine, 1000 / 60);
+    Render.world(render);
+    updateFPSCounter();
+    requestAnimationFrame(animate);
+})();
+
+
 // Start the rendering loop
 Render.run(render);
