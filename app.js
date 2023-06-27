@@ -65,6 +65,7 @@ let fpsCounter = document.createElement('div');
 fpsCounter.style.position = 'fixed';
 fpsCounter.style.top = '10px';
 fpsCounter.style.left = '10px';
+fpsCounter.style.color = 'white';
 document.body.appendChild(fpsCounter);
 
 function updateFPSCounter() {
